@@ -1,5 +1,5 @@
-import { of, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { of, from, interval, Observable } from 'rxjs';
+import { map, switchMap, delay, concatMap } from 'rxjs/operators';
 
 /***********************  map  ***********************/
 
@@ -25,22 +25,29 @@ import { map, switchMap } from 'rxjs/operators';
 //source.subscribe(x => console.log(x));
 
 /********* transform data *********/
-// class Employee {
-//   name: string;
-//   perId: number;
-// }
+class Employee {
+  name: string;
+  perId: number;
+}
 
-// var employee: Employee;
+var employee: Employee;
 
-// function getEmployee() {
-//   return of({name: 'Maria Gomez', perId:3211});
-// }
+function getEmployees() {
+  var employees = [ 
+      {name: 'Maria Gomez', perId:3211}, 
+      {name: 'John Barnaby', perId:4212}, 
+      {name: 'Rick Johnson', perId:5213} 
+  ];
 
-// getEmployee().pipe(
-//   map(ee => {
-//     employee = ee;
-//     console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
-//   })).subscribe();
+  return from(employees).pipe(
+    concatMap( ee => of(ee).pipe( delay(1500))));
+  }
+
+getEmployees().pipe(
+  map(ee => {
+    employee = ee;
+    console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
+  })).subscribe();
 
 /***********************  switchMap  ***********************/
 
