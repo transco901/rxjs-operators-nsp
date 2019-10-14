@@ -2,6 +2,7 @@ import { of, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 /***********************  map  ***********************/
+
 // Source observable.
 // of(): Converts the arguments to an observable sequence.
 // pipe(): takes as its arguments the functions you want to combine, and 
@@ -13,14 +14,33 @@ import { map, switchMap } from 'rxjs/operators';
 // itself, the recipe doesn’t do anything. You need to call subscribe() 
 // to produce a result through the recipe.
 
-const source = of('World', 'Houston', 'Flower Mound').pipe(
+// 1. basic example
+const source = of('World', 'Houston', 'Insperity').pipe(
   map(x => `Hello ${x}!`) // transforming each value in the stream
 );
 
 // Subscribe/Listen
 source.subscribe(x => console.log(x));
 
-/***********************  map  ***********************/
+// 2. use case
+class Employee {
+  name: string;
+  perId: number;
+}
+
+var employee: Employee;
+
+function getEmployee() {
+  return of({name: 'Maria Gomez', perId:3211});
+}
+
+getEmployee().pipe(
+  map(ee => { 
+    employee = ee;
+    console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
+  })).subscribe();
+
+/***********************  switchMap  ***********************/
 
 
 
