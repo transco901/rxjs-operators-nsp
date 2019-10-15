@@ -1,5 +1,5 @@
 import { Observable, of, from, interval, fromEvent } from 'rxjs';
-import { map, switchMap, delay, concatMap, filter, catchError } from 'rxjs/operators';
+import { map, switchMap, delay, concatMap, filter, catchError, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
 /****************************  map  ****************************/
@@ -83,20 +83,26 @@ import { ajax } from 'rxjs/ajax';
 /****************************  switchMap  ****************************/
 // type ahead - only interested in latest input; cancel the rest.
 
+document.getElementById("divForSearchBox").style.visibility = 'visible';
+fromEvent(document,'keyup').pipe(
+  debounceTime(300),
+  distinctUntilChanged(),
+  switchMap(val => filterSearchItems()))
+  .subscribe();
 
 function filterSearchItems() {
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("searchBox");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
+    ul = document.getElementById("searchResultList");
     li = ul.getElementsByTagName("li");
+    
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
+        li[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1) ?
+          "" : "none";
     }
+
+    return new Observable();
 }
