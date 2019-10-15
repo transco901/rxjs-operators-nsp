@@ -80,4 +80,7 @@ import { ajax } from 'rxjs/ajax';
 //   ))
 // ).subscribe(x => console.log(x));
 
-/****************************  ?????  ****************************/
+/****************************  switchMap  ****************************/
+// Polling - How can I add a REST endpoint that lives on the stackblitz
+// server?
+
