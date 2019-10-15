@@ -81,6 +81,11 @@ import { ajax } from 'rxjs/ajax';
 // ).subscribe(x => console.log(x));
 
 /****************************  switchMap  ****************************/
-// Polling - How can I add a REST endpoint that lives on the stackblitz
-// server?
-
+// Polling - every time service is called a new Observable is created and old is
+// cancelled.
+var mockDataIndex = 
+const mockData = ['data1', 'data2'];
+function getUpdatedData() {
+  return of()
+}
+var pollingSubscription = interval(2000).switchMap(()=> getUpdatedData())
