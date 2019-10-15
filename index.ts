@@ -1,5 +1,5 @@
-import { of, from, interval, Observable } from 'rxjs';
-import { map, switchMap, delay, concatMap } from 'rxjs/operators';
+import { Observable, of, from, interval, fromEvent } from 'rxjs';
+import { map, switchMap, delay, concatMap, filter } from 'rxjs/operators';
 
 /***********************  map  ***********************/
 
@@ -25,31 +25,43 @@ import { map, switchMap, delay, concatMap } from 'rxjs/operators';
 //source.subscribe(x => console.log(x));
 
 /********* transform data *********/
-class Employee {
-  name: string;
-  perId: number;
-}
+// class Employee {
+//   name: string;
+//   perId: number;
+// }
 
-var employee: Employee;
+// var employee: Employee;
 
-function getEmployees() {
-  var employees = [ 
-      {name: 'Maria Gomez', perId:3211}, 
-      {name: 'John Barnaby', perId:4212}, 
-      {name: 'Rick Johnson', perId:5213} 
-  ];
+// function getEmployees() {
+//   var employees = [ 
+//       {name: 'Maria Gomez', perId:3211}, 
+//       {name: 'John Barnaby', perId:4212}, 
+//       {name: 'Rick Johnson', perId:5213} 
+//   ];
 
-  return from(employees).pipe(
-    concatMap( ee => of(ee).pipe( delay(1500))));
-  }
+//   return from(employees).pipe(
+//     concatMap( ee => of(ee).pipe( delay(1500))));
+//   }
 
-getEmployees().pipe(
-  map(ee => {
-    employee = ee;
-    console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
-  })).subscribe();
-
-/***********************  switchMap  ***********************/
+// getEmployees().pipe(
+//   map(ee => {
+//     employee = ee;
+//     console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
+//   })).subscribe();
 
 
+/***********************  fromEvent and filter  ***********************/
 
+// document.getElementById("divForClicks").style.visibility = 'visible';
+
+// var clicks = fromEvent(document, 'click');
+
+// var clicksOnSpans = clicks.pipe(
+//     filter( (event: Event, index: number) => {
+//       return (<Element>event.target).tagName == "SPAN";
+//     }));
+
+// clicksOnSpans.subscribe(x => console.log(`span clicked!`))
+
+
+/***********************  next operator???  ***********************/
