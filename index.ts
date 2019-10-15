@@ -1,7 +1,8 @@
 import { Observable, of, from, interval, fromEvent } from 'rxjs';
-import { map, switchMap, delay, concatMap, filter } from 'rxjs/operators';
+import { map, switchMap, delay, concatMap, filter, catchError } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
 
-/***********************  map  ***********************/
+/****************************  map  ****************************/
 
 // Source observable.
 // of(): Converts the arguments to an observable sequence.
@@ -50,7 +51,7 @@ import { map, switchMap, delay, concatMap, filter } from 'rxjs/operators';
 //   })).subscribe();
 
 
-/***********************  fromEvent and filter  ***********************/
+/****************************  fromEvent and filter  ****************************/
 
 // document.getElementById("divForClicks").style.visibility = 'visible';
 
@@ -64,4 +65,19 @@ import { map, switchMap, delay, concatMap, filter } from 'rxjs/operators';
 // clicksOnSpans.subscribe(x => console.log(`span clicked!`))
 
 
-/***********************  next operator???  ***********************/
+/****************************  catchError  ****************************/
+// const loadData = fromEvent(document, 'click');
+
+// // When we click 'load', trigger an http event
+// loadData.pipe(
+//   concatMap(() => ajax.get('http://this/will/404').pipe(
+//     catchError(err => {
+//       //side effect, to log something happened
+//       console.log(`An error occurred while loading: ${err}`);
+//       //return different Observable
+//       return of({message: 'We noticed an error.'});
+//     })
+//   ))
+// ).subscribe(x => console.log(x));
+
+/****************************  ?????  ****************************/
