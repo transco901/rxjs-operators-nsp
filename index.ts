@@ -53,7 +53,7 @@ import { ajax } from 'rxjs/ajax';
 
 /****************************  fromEvent and filter  ****************************/
 
-// document.getElementById("divForClicks").style.visibility = 'visible';
+// document.getElementById("divForClicks").style.display = 'block';
 
 // var clicks = fromEvent(document, 'click');
 
@@ -85,26 +85,26 @@ import { ajax } from 'rxjs/ajax';
 // swtichMap() - type ahead search - only interested in latest input; cancel the rest.
 // distinctUntilChange() - Only emit when the current value is different than the last.
 
-document.getElementById("divForSearchBox").style.visibility = 'visible';
+// document.getElementById("divForSearchBox").style.visibility = 'visible';
 
-fromEvent(document,'keyup').pipe(
-  debounceTime(300),
-  distinctUntilChanged(),
-  switchMap(val => filterSearchItems()))
-  .subscribe();
+// fromEvent(document,'keyup').pipe(
+//   debounceTime(300),
+//   distinctUntilChanged(),
+//   switchMap(val => filterSearchItems()))
+//   .subscribe();
 
-function filterSearchItems() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("searchBox");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("searchResultList");
-    li = ul.getElementsByTagName("li");
+// function filterSearchItems() {
+//     var input, filter, ul, li, a, i, txtValue;
+//     input = document.getElementById("searchBox");
+//     filter = input.value.toUpperCase();
+//     ul = document.getElementById("searchResultList");
+//     li = ul.getElementsByTagName("li");
     
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        li[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1) ?
-          "" : "none";
-    }
-    return new Observable(); // weird?
-}
+//     for (i = 0; i < li.length; i++) {
+//         a = li[i].getElementsByTagName("a")[0];
+//         txtValue = a.textContent || a.innerText;
+//         li[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1) ?
+//           "" : "none";
+//     }
+//     return new Observable(); // weird?
+// }
