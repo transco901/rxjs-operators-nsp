@@ -1,6 +1,37 @@
 
 <head>
-  <link rel="stylesheet" href="https://github.com/transco901/rxjs-operators-nsp/blob/master/style.css">
+<style>
+  #searchBox {
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 14px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#searchResultList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#searchResultList li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+  display: block
+}
+
+#searchResultList li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
 </head>
 <div>
 	<div style="float:left">

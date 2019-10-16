@@ -2,7 +2,7 @@ h2 {
   color: #006595 !important;
 }
 
-#myInput {
+#searchBox {
   background-image: url('/css/searchicon.png');
   background-position: 10px 12px;
   background-repeat: no-repeat;
@@ -13,13 +13,13 @@ h2 {
   margin-bottom: 12px;
 }
 
-#myUL {
+#searchResultList {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-#myUL li a {
+#searchResultList li a {
   border: 1px solid #ddd;
   margin-top: -1px; /* Prevent double borders */
   background-color: #f6f6f6;
@@ -30,6 +30,6 @@ h2 {
   display: block
 }
 
-#myUL li a:hover:not(.header) {
+#searchResultList li a:hover:not(.header) {
   background-color: #eee;
 }
