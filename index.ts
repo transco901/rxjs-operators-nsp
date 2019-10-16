@@ -22,8 +22,8 @@ import { ajax } from 'rxjs/ajax';
 //     map(x => `Hello ${x}!`) 
 //   );
 
-// Subscribe- activate the observable and listen for emitted values.
-//source.subscribe(x => console.log(x));
+// //Subscribe- activate the observable and listen for emitted values.
+// source.subscribe(x => console.log(x));
 
 /********* transform data *********/
 // class Employee {
