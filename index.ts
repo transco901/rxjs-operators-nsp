@@ -16,16 +16,20 @@ import { ajax } from 'rxjs/ajax';
 // to produce a result through the recipe.
 
 /********* getting started *********/
+// console.clear();
+
 // const source = of('World', 'Houston', 'Insperity');
 
 // source.pipe( 
 //     map(x => `Hello ${x}!`) 
 //   );
 
-// //Subscribe- activate the observable and listen for emitted values.
+// // Subscribe- activate the observable and listen for emitted values.
 // source.subscribe(x => console.log(x));
 
 /********* transform data *********/
+// console.clear();
+
 // class Employee {
 //   name: string;
 //   perId: number;
@@ -52,6 +56,7 @@ import { ajax } from 'rxjs/ajax';
 
 
 /****************************  fromEvent and filter  ****************************/
+// console.clear();
 
 // document.getElementById("divForClicks").style.display = 'block';
 
@@ -66,6 +71,7 @@ import { ajax } from 'rxjs/ajax';
 
 
 /****************************  catchError  ****************************/
+// console.clear();
 // const loadData = fromEvent(document, 'click');
 
 // // When we click 'load', trigger an http event
@@ -74,16 +80,16 @@ import { ajax } from 'rxjs/ajax';
 //     catchError(err => {
 //       //side effect, to log something happened
 //       console.log(`An error occurred while loading: ${err}`);
-//       //return different Observable
+//       // return different Observable
 //       return of({message: 'We noticed an error.'});
 //     })
 //   ))
 // ).subscribe(x => console.log(x));
 
 /**************************  switchMap, distinctUntilChanged  **************************/
-
-// swtichMap() - type ahead search - only interested in latest input; cancel the rest.
-// distinctUntilChange() - Only emit when the current value is different than the last.
+// console.clear();
+// // swtichMap() - type ahead search - only interested in latest input; cancel the rest.
+// // distinctUntilChange() - Only emit when the current value is different than the last.
 
 // document.getElementById("divForSearchBox").style.visibility = 'visible';
 
