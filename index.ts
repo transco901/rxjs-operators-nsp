@@ -1,8 +1,17 @@
-import { Observable, of, from, interval, fromEvent } from 'rxjs';
-import { map, switchMap, delay, concatMap, filter, catchError, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { ajax } from 'rxjs/ajax';
+import { Observable, of, from, interval, fromEvent } from "rxjs";
+import {
+  map,
+  switchMap,
+  delay,
+  concatMap,
+  filter,
+  catchError,
+  debounceTime,
+  distinctUntilChanged
+} from "rxjs/operators";
+import { ajax } from "rxjs/ajax";
 
-/****************************  map  ****************************/
+/****************************  map and filter ****************************/
 
 /********* getting started *********/
 // console.clear();
@@ -12,43 +21,45 @@ import { ajax } from 'rxjs/ajax';
 
 // // pipe(): takes as its arguments the functions you want to combine, and
 // // returns a new function that, when executed, runs the composed functions in sequence.
-// source.pipe( 
+// source.pipe(
 //     map(s => `Hello ${s}!`),
 //     //map(s => 10),
 //     //filter( s => s === 10)
-//   ).subscribe(s => console.log(s)); 
+//   ).subscribe(s => console.log(s));
 
 /********* transform data *********/
-console.clear();
+// console.clear();
 
-class Employee {
-  name: string;
-  perId: number;
-  companyId: number;
-}
+// class Employee {
+//   name: string;
+//   perId: number;
+//   companyId: number;
+// }
 
-var employee: Employee;
+// var employee: Employee;
 
-function getEmployees() {
-  var employees = [ 
-      {name: 'Ben Jones', perId:3211, companyId: 8100}, 
-      {name: 'John Barnaby', perId:4212, companyId: 9200}, 
-      {name: 'Joyce Barnaby', perId:4213, companyId: 8100}, 
-      {name: 'Charlie Nelson', perId:5213, companyId: 9200},
-      {name: 'Kate Wilding', perId:5213, companyId: 9200},
-      {name: 'Gavin Troy', perId:5213, companyId: 8100},
-  ];
+// function getEmployees() {
+//   let employees: Employee[] = [
+//     { name: "Ben Jones", perId: 3211, companyId: 8100 },
+//     { name: "John Barnaby", perId: 4212, companyId: 9200 },
+//     { name: "Joyce Barnaby", perId: 4213, companyId: 8100 },
+//     { name: "Charlie Nelson", perId: 5213, companyId: 9200 },
+//     { name: "Kate Wilding", perId: 5214, companyId: 9200 },
+//     { name: "Gavin Troy", perId: 5215, companyId: 8100 }
+//   ];
 
-  return from(employees).pipe(
-    concatMap( ee => of(ee).pipe( delay(1500))));
-  }
+//   return from(employees);
+//   //return from(employees).pipe(concatMap( ee => of(ee).pipe(delay(500))));
+// }
 
-getEmployees().pipe(
-  map(ee => {
-    employee = ee;
-    console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
-  })).subscribe();
-
+// getEmployees()
+//   .pipe(
+//     //filter(ee => ee.companyId === 8100),
+//     map(ee => {
+//       employee = ee;
+//       console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
+//     }))
+//   .subscribe(); 
 
 /****************************  fromEvent and filter  ****************************/
 // console.clear();
@@ -63,7 +74,6 @@ getEmployees().pipe(
 //     }));
 
 // clicksOnSpans.subscribe(x => console.log(`span clicked!`))
-
 
 /****************************  catchError  ****************************/
 // console.clear();
@@ -100,7 +110,7 @@ getEmployees().pipe(
 //     filter = input.value.toUpperCase();
 //     ul = document.getElementById("searchResultList");
 //     li = ul.getElementsByTagName("li");
-    
+
 //     for (i = 0; i < li.length; i++) {
 //         a = li[i].getElementsByTagName("a")[0];
 //         txtValue = a.textContent || a.innerText;
