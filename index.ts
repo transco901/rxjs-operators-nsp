@@ -4,55 +4,50 @@ import { ajax } from 'rxjs/ajax';
 
 /****************************  map  ****************************/
 
-// Source observable.
-// of(): Converts the arguments to an observable sequence.
-// pipe(): takes as its arguments the functions you want to combine, and
-// returns a new function that, when executed, runs the composed
-// functions in sequence.
-
-// A set of operators applied to an observable is a recipe—that is, a
-// set of instructions for producing the values you’re interested in. By
-// itself, the recipe doesn’t do anything. You need to call subscribe()
-// to produce a result through the recipe.
-
 /********* getting started *********/
 // console.clear();
 
+// //of(): Converts the arguments to an observable sequence
 // const source = of('World', 'Houston', 'Insperity');
 
+// // pipe(): takes as its arguments the functions you want to combine, and
+// // returns a new function that, when executed, runs the composed functions in sequence.
 // source.pipe( 
-//     map(x => `Hello ${x}!`) 
-//   );
-
-// // Subscribe- activate the observable and listen for emitted values.
-// source.subscribe(x => console.log(x));
+//     map(s => `Hello ${s}!`),
+//     //map(s => 10),
+//     //filter( s => s === 10)
+//   ).subscribe(s => console.log(s)); 
 
 /********* transform data *********/
-// console.clear();
+console.clear();
 
-// class Employee {
-//   name: string;
-//   perId: number;
-// }
+class Employee {
+  name: string;
+  perId: number;
+  companyId: number;
+}
 
-// var employee: Employee;
+var employee: Employee;
 
-// function getEmployees() {
-//   var employees = [ 
-//       {name: 'Maria Gomez', perId:3211}, 
-//       {name: 'John Barnaby', perId:4212}, 
-//       {name: 'Rick Johnson', perId:5213} 
-//   ];
+function getEmployees() {
+  var employees = [ 
+      {name: 'Ben Jones', perId:3211, companyId: 8100}, 
+      {name: 'John Barnaby', perId:4212, companyId: 9200}, 
+      {name: 'Joyce Barnaby', perId:4213, companyId: 8100}, 
+      {name: 'Charlie Nelson', perId:5213, companyId: 9200},
+      {name: 'Kate Wilding', perId:5213, companyId: 9200},
+      {name: 'Gavin Troy', perId:5213, companyId: 8100},
+  ];
 
-//   return from(employees).pipe(
-//     concatMap( ee => of(ee).pipe( delay(1500))));
-//   }
+  return from(employees).pipe(
+    concatMap( ee => of(ee).pipe( delay(1500))));
+  }
 
-// getEmployees().pipe(
-//   map(ee => {
-//     employee = ee;
-//     console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
-//   })).subscribe();
+getEmployees().pipe(
+  map(ee => {
+    employee = ee;
+    console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
+  })).subscribe();
 
 
 /****************************  fromEvent and filter  ****************************/
