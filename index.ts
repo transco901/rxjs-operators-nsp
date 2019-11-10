@@ -12,54 +12,41 @@ import {
 import { ajax } from "rxjs/ajax";
 
 /****************************  map and filter ****************************/
+console.clear();
 
-/********* getting started *********/
-// console.clear();
+class Employee {
+  name: string;
+  perId: number;
+  companyId: number;
+}
 
-// //of(): Converts the arguments to an observable sequence
-// const source = of('World', 'Houston', 'Insperity');
+var employee: Employee;
 
-// // pipe(): takes as its arguments the functions you want to combine, and
-// // returns a new function that, when executed, runs the composed functions in sequence.
-// source.pipe(
-//     map(s => `Hello ${s}!`),
-//     //map(s => 10),
-//     //filter( s => s === 10)
-//   ).subscribe(s => console.log(s));
+function getEmployees() {
+  let employees: Employee[] = [
+    { name: "Ben Jones", perId: 3211, companyId: 8100 },
+    { name: "John Barnaby", perId: 4212, companyId: 9200 },
+    { name: "Joyce Barnaby", perId: 4213, companyId: 8100 },
+    { name: "Charlie Nelson", perId: 5213, companyId: 9200 },
+    { name: "Kate Wilding", perId: 5214, companyId: 9200 },
+    { name: "Gavin Troy", perId: 5215, companyId: 8100 }
+  ];
 
-/********* transform data *********/
-// console.clear();
+  //from(): Converts the arguments to a sequence of observables
+  return from(employees).pipe(concatMap(ee => of(ee).pipe(delay(500))));
+}
 
-// class Employee {
-//   name: string;
-//   perId: number;
-//   companyId: number;
-// }
-
-// var employee: Employee;
-
-// function getEmployees() {
-//   let employees: Employee[] = [
-//     { name: "Ben Jones", perId: 3211, companyId: 8100 },
-//     { name: "John Barnaby", perId: 4212, companyId: 9200 },
-//     { name: "Joyce Barnaby", perId: 4213, companyId: 8100 },
-//     { name: "Charlie Nelson", perId: 5213, companyId: 9200 },
-//     { name: "Kate Wilding", perId: 5214, companyId: 9200 },
-//     { name: "Gavin Troy", perId: 5215, companyId: 8100 }
-//   ];
-
-//   return from(employees);
-//   //return from(employees).pipe(concatMap( ee => of(ee).pipe(delay(500))));
-// }
-
-// getEmployees()
-//   .pipe(
-//     //filter(ee => ee.companyId === 8100),
-//     map(ee => {
-//       employee = ee;
-//       console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
-//     }))
-//   .subscribe(); 
+// pipe(): takes as its arguments the functions you want to combine (a.k.a. a recipe), and returns a new function that, when executed, runs the composed functions in sequence
+getEmployees()
+  .pipe(
+    filter(ee => ee.companyId === 8100),
+    map(ee => {
+      employee = ee;
+      console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
+    })
+  );
+  // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
+  //.subscribe();
 
 /****************************  fromEvent and filter  ****************************/
 // console.clear();
