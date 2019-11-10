@@ -48,7 +48,7 @@ getEmployees()
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
   //.subscribe();
 
-/****************************  fromEvent and filter  ****************************/
+/****************************  fromEvent with filter  ****************************/
 // console.clear();
 
 // document.getElementById("divForClicks").style.display = 'block';
