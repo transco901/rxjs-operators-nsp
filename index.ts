@@ -32,7 +32,7 @@ function getEmployees() {
     { name: "Gavin Troy", perId: 5215, companyId: 8100 }
   ];
 
-  //from(): Converts the arguments to a sequence of observables
+  //from(): Converts it's argument to a sequence of observables
   return from(employees).pipe(concatMap(ee => of(ee).pipe(delay(500))));
 }
 
@@ -42,45 +42,17 @@ getEmployees()
     filter(ee => ee.companyId === 8100),
     map(ee => {
       employee = ee;
-      console.log(`Employee mapped: ${employee.name}, ${employee.perId}`);
+      console.log(`Employee mapped: ${employee.name}, ${employee.perId}, : ${employee.companyId}`)
     })
-  );
+  )
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
-  //.subscribe();
+  .subscribe();
 
-/****************************  fromEvent with filter  ****************************/
+
+/************************  switchMap, distinctUntilChanged, debounceTime ************************/
 // console.clear();
-
-// document.getElementById("divForClicks").style.display = 'block';
-
-// var clicks = fromEvent(document, 'click');
-
-// var clicksOnSpans = clicks.pipe(
-//     filter( (event: Event, index: number) => {
-//       return (<Element>event.target).tagName == "SPAN";
-//     }));
-
-// clicksOnSpans.subscribe(x => console.log(`span clicked!`))
-
-/****************************  catchError  ****************************/
-// console.clear();
-// const loadData = fromEvent(document, 'click');
-
-// // When we click 'load', trigger an http event
-// loadData.pipe(
-//   concatMap(() => ajax.get('http://this/will/404').pipe(
-//     catchError(err => {
-//       //side effect, to log something happened
-//       console.log(`An error occurred while loading: ${err}`);
-//       // return different Observable
-//       return of({message: 'We noticed an error.'});
-//     })
-//   ))
-// ).subscribe(x => console.log(x));
-
-/**************************  switchMap, distinctUntilChanged  **************************/
-// console.clear();
-// // swtichMap() - type ahead search - only interested in latest input; cancel the rest.
+// // switchMap() - type ahead search - only interested in latest input; cancel the rest.
+// // debounceTime() - delay and only the most recent value from each burst of emissions.
 // // distinctUntilChange() - Only emit when the current value is different than the last.
 
 // document.getElementById("divForSearchBox").style.visibility = 'visible';
@@ -104,5 +76,5 @@ getEmployees()
 //         li[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1) ?
 //           "" : "none";
 //     }
-//     return new Observable(); // weird?
+//     return new Observable();
 // }
