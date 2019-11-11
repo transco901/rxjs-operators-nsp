@@ -7,7 +7,8 @@ import {
   filter,
   catchError,
   debounceTime,
-  distinctUntilChanged
+  distinctUntilChanged,
+  take
 } from "rxjs/operators";
 import { ajax } from "rxjs/ajax";
 
@@ -53,20 +54,22 @@ getEmployees()
 // console.clear();
 // // switchMap() - type ahead search - only interested in latest input; cancel the rest.
 // // debounceTime() - delay and only the most recent value from each burst of emissions.  wait for the user input to stabilize
-// // distinctUntilChange() - Only emit when the current value is different than the last.
+// // distinctUntilChange() - Only emit when the current value is different than the last (avoid duplicate seraches).
 
 // document.getElementById("divForSearchBox").style.visibility = 'visible';
 
 // fromEvent(document,'keyup').pipe(
-//   debounceTime(300),
+//   debounceTime(400),
 //   distinctUntilChanged(),
-//   switchMap(val => filterSearchItems()))
+//   switchMap(() => filterSearchItems()))
 //   .subscribe();
 
 // function filterSearchItems() {
 //     var input, filter, ul, li, a, i, txtValue;
 //     input = document.getElementById("searchBox");
 //     filter = input.value.toUpperCase();
+
+//     console.log(`filter text: ${filter}`)
 //     ul = document.getElementById("searchResultList");
 //     li = ul.getElementsByTagName("li");
 
