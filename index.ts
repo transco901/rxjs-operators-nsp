@@ -43,7 +43,7 @@ getEmployees()
     filter(ee => ee.companyId === 8100),
     map(ee => {
       employee = ee;
-      console.log(`Employee mapped: ${employee.name}, ${employee.perId}, : ${employee.companyId}`)
+      console.log(`EE mapped: ${employee.name}, ${employee.perId}, : ${employee.companyId}`)
     })
   );
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
