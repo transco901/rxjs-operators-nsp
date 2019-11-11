@@ -24,13 +24,13 @@ class Employee {
 var employee: Employee;
 
 function getEmployees() {
-  let employees: Employee[] = [
-    { name: "Ben Jones", perId: 3211, companyId: 8100 },
-    { name: "John Barnaby", perId: 4212, companyId: 9200 },
-    { name: "Joyce Barnaby", perId: 4213, companyId: 8100 },
-    { name: "Charlie Nelson", perId: 5213, companyId: 9200 },
-    { name: "Kate Wilding", perId: 5214, companyId: 9200 },
-    { name: "Gavin Troy", perId: 5215, companyId: 8100 }
+  let employees = [
+    { name: "Ben Jones", perId: 3211, companyId: 8100, hireDate: new Date(2019, 11, 1) },
+    { name: "John Barnaby", perId: 4212, companyId: 9200, hireDate: new Date(2018, 11, 1) },
+    { name: "Joyce Barnaby", perId: 4213, companyId: 8100, hireDate: new Date(2014, 12, 1) },
+    { name: "Charlie Nelson", perId: 5213, companyId: 9200, hireDate: new Date(2019, 4, 4) },
+    { name: "Kate Wilding", perId: 5214, companyId: 9200, hireDate: new Date(2015, 10, 12) },
+    { name: "Gavin Troy", perId: 5215, companyId: 8100, hireDate: new Date(2016, 1, 19) }
   ];
 
   //from(): Converts it's argument to a sequence of observables
@@ -40,7 +40,7 @@ function getEmployees() {
 // pipe(): takes as its arguments the functions you want to combine (a.k.a. a recipe), and returns a new function that, when executed, runs the composed functions in sequence
 getEmployees()
   .pipe(
-    filter(ee => ee.companyId === 8100),
+    //filter(ee => ee.companyId === 8100),
     map(ee => {
       employee = ee;
       console.log(`EE mapped: ${employee.name}, ${employee.perId}, : ${employee.companyId}`)
