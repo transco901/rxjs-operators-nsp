@@ -21,7 +21,7 @@ class Employee {
   companyId: number;
 }
 
-var employee: Employee;
+var employees: Employee[];
 
 function getEmployees() {
   let employees = [
@@ -42,7 +42,8 @@ getEmployees()
   .pipe(
     //filter(ee => ee.companyId === 8100),
     map(ee => {
-      employee = ee;
+      const employee: Employee = ee;
+      employees.push(employee);
       console.log(`EE mapped: ${employee.name}, ${employee.perId}, : ${employee.companyId}`)
     })
   );
