@@ -1,5 +1,5 @@
 import { Observable, of, from, interval, fromEvent } from "rxjs";
-import {
+import { 
   map,
   switchMap,
   delay,
@@ -44,15 +44,15 @@ getEmployees()
       employee = ee;
       console.log(`Employee mapped: ${employee.name}, ${employee.perId}, : ${employee.companyId}`)
     })
-  )
+  );
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
-  .subscribe();
+  //.subscribe();
 
 
 /************************  switchMap, distinctUntilChanged, debounceTime ************************/
 // console.clear();
 // // switchMap() - type ahead search - only interested in latest input; cancel the rest.
-// // debounceTime() - delay and only the most recent value from each burst of emissions.
+// // debounceTime() - delay and only the most recent value from each burst of emissions.  wait for the user input to stabilize
 // // distinctUntilChange() - Only emit when the current value is different than the last.
 
 // document.getElementById("divForSearchBox").style.visibility = 'visible';
