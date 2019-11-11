@@ -10,7 +10,7 @@ import {
   distinctUntilChanged,
   take
 } from "rxjs/operators";
-import { ajax } from "rxjs/ajax";
+
 
 /****************************  map and filter ****************************/
 console.clear();
@@ -19,18 +19,38 @@ class Employee {
   name: string;
   perId: number;
   companyId: number;
+  age: number;
 }
 
-var employees: Employee[];
+function transformToEmployee(ee: any): Employee {
+  const newEE = new Employee();  
+  newEE.name = ee.name;
+  newEE.perId = ee.perId;
+  newEE.companyId = ee.companyId;
+  newEE.age = getAge(ee.birthDate);
+  return newEE;
+}
 
-function getEmployees() {
+function getAge(birthDate: Date) {
+    var today = new Date();
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+let employees = new Array<Employee>();
+
+function getEmployees() {  
   let employees = [
-    { name: "Ben Jones", perId: 3211, companyId: 8100, hireDate: new Date(2019, 11, 1) },
-    { name: "John Barnaby", perId: 4212, companyId: 9200, hireDate: new Date(2018, 11, 1) },
-    { name: "Joyce Barnaby", perId: 4213, companyId: 8100, hireDate: new Date(2014, 12, 1) },
-    { name: "Charlie Nelson", perId: 5213, companyId: 9200, hireDate: new Date(2019, 4, 4) },
-    { name: "Kate Wilding", perId: 5214, companyId: 9200, hireDate: new Date(2015, 10, 12) },
-    { name: "Gavin Troy", perId: 5215, companyId: 8100, hireDate: new Date(2016, 1, 19) }
+    { name: "Ben Jones", perId: 3211, companyId: 8100, birthDate: new Date(1984, 11, 1) },
+    { name: "John Barnaby", perId: 4212, companyId: 9200, birthDate: new Date(2000, 11, 1) },
+    { name: "Joyce Barnaby", perId: 4213, companyId: 8100, birthDate: new Date(1987, 1, 1) },
+    { name: "Charlie Nelson", perId: 5213, companyId: 9200, birthDate: new Date(2001, 4, 4) },
+    { name: "Kate Wilding", perId: 5214, companyId: 9200, birthDate: new Date(1993, 10, 12) },
+    { name: "Gavin Troy", perId: 5215, companyId: 8100, birthDate: new Date(1977, 1, 19) }
   ];
 
   //from(): Converts it's argument to a sequence of observables
@@ -42,9 +62,9 @@ getEmployees()
   .pipe(
     //filter(ee => ee.companyId === 8100),
     map(ee => {
-      const employee: Employee = ee;
+      const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
-      console.log(`EE mapped: ${employee.name}, ${employee.perId}, : ${employee.companyId}`)
+      console.log(`EE mapped: ${employee.name}, ${employee.perId}, age: ${employee.age}`)
     })
   );
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
