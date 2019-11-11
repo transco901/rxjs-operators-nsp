@@ -1,5 +1,6 @@
 import { Observable, of, from, interval, fromEvent } from "rxjs";
 import { 
+  tap,
   map,
   switchMap,
   delay,
@@ -64,7 +65,7 @@ getEmployees()
     map(ee => {
       const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
-      console.log(`EE mapped: ${employee.name}, ${employee.perId}, age: ${employee.age}`)
+      console.log(`Name: ${employee.name}, id: ${employee.perId}, age: ${employee.age}`)
     })
   );
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
