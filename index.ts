@@ -12,7 +12,6 @@ import {
   take
 } from "rxjs/operators";
 
-
 /****************************  map and filter ****************************/
 console.clear();
 
@@ -54,22 +53,22 @@ function getEmployees() {
     { name: "Gavin Troy", perId: 5215, companyId: 8100, birthDate: new Date(1977, 1, 19) }
   ];
 
-  //from(): Converts it's argument to a sequence of observables
-  return from(employees).pipe(concatMap(ee => of(ee).pipe(delay(500))));
+  return from(employees)
+              .pipe(concatMap(ee => of(ee).pipe(delay(500))));
 }
 
 // pipe(): takes as its arguments the functions you want to combine (a.k.a. a recipe), and returns a new function that, when executed, runs the composed functions in sequence
 getEmployees()
   .pipe(
-    //filter(ee => ee.companyId === 8100),
+    filter(ee => ee.companyId !== 8100),
     map(ee => {
       const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
       console.log(`Name: ${employee.name}, id: ${employee.perId}, age: ${employee.age}`)
     })
-  );
+  )
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
-  //.subscribe();
+  .subscribe();
 
 
 /************************  switchMap, distinctUntilChanged, debounceTime ************************/
