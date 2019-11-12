@@ -66,9 +66,9 @@ getEmployees()
       employees.push(employee);
       console.log(`Name: ${employee.name}, id: ${employee.perId}, age: ${employee.age}`)
     })
-  )
+  );
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
-  .subscribe();
+  //.subscribe();
 
 
 /************************  switchMap ************************/
