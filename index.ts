@@ -60,7 +60,6 @@ function getEmployees() {
 // pipe(): takes as its arguments the functions you want to combine (a.k.a. a recipe), and returns a new function that, when executed, runs the composed functions in sequence
 getEmployees()
   .pipe(
-    filter(ee => ee.companyId !== 8100),
     map(ee => {
       const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
