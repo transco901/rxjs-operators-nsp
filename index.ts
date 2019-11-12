@@ -60,36 +60,36 @@ function getEmployees() {
 // pipe(): takes as its arguments the functions you want to combine (a.k.a. a recipe), and returns a new function that, when executed, runs the composed functions in sequence
 getEmployees()
   .pipe(
+    filter(ee => ee.companyId !== 8100),
     map(ee => {
       const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
       console.log(`Name: ${employee.name}, id: ${employee.perId}, age: ${employee.age}`)
     })
-  );
+  )
   // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
-  //.subscribe();
+  .subscribe();
 
 
-/************************  switchMap, distinctUntilChanged, debounceTime ************************/
+/************************  switchMap ************************/
 // console.clear();
 // // switchMap() - type ahead search - only interested in latest input; cancel the rest.
 // // debounceTime() - delay and only the most recent value from each burst of emissions.  wait for the user input to stabilize
 // // distinctUntilChange() - Only emit when the current value is different than the last (avoid duplicate seraches).
 
-// document.getElementById("divForSearchBox").style.visibility = 'visible';
-
 // fromEvent(document,'keyup').pipe(
-//   debounceTime(400),
+//   debounceTime(500),
+//   map((e: any) => e.target.value),
 //   distinctUntilChanged(),
-//   switchMap(() => filterSearchItems()))
+//   tap(c => console.log(`API call @${new Date()}`)), 
+//   switchMap(() => fakeGetCompanyHttpRequest()))
 //   .subscribe();
 
-// function filterSearchItems() {
+// function fakeGetCompanyHttpRequest() {
 //     var input, filter, ul, li, a, i, txtValue;
 //     input = document.getElementById("searchBox");
 //     filter = input.value.toUpperCase();
 
-//     console.log(`filter text: ${filter}`)
 //     ul = document.getElementById("searchResultList");
 //     li = ul.getElementsByTagName("li");
 
@@ -101,3 +101,5 @@ getEmployees()
 //     }
 //     return new Observable();
 // }
+
+// document.getElementById("divForSearchBox").style.visibility = 'visible';
