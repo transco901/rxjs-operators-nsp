@@ -1,37 +1,59 @@
-
 <head>
-<style>
-  #searchBox {
-  background-position: 10px 12px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 14px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
+	<style>
+		#searchBox {
+			background-position: 10px 12px;
+			background-repeat: no-repeat;
+			width: 100%;
+			font-size: 14px;
+			padding: 12px 20px 12px 40px;
+			border: 1px solid #ddd;
+			margin-bottom: 12px;
+		}
 
-#searchResultList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
+		#searchResultList {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
 
-#searchResultList li a {
-  border: 1px solid #ddd;
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6;
-  padding: 4px;
-  text-decoration: none;
-  font-size: 14px;
-  color: black;
-  display: block
-}
+		#searchResultList li a {
+			border: 1px solid #ddd;
+			margin-top: -1px;
+			/* Prevent double borders */
+			background-color: #f6f6f6;
+			padding: 4px;
+			text-decoration: none;
+			font-size: 14px;
+			color: black;
+			display: block
+		}
 
-#searchResultList li a:hover:not(.header) {
-  background-color: #eee;
-}
-</style>
+		#searchResultList li a:hover:not(.header) {
+			background-color: #eee;
+		}
+
+		#expensesList {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+
+    #expensesList li a {
+			border: 1px solid #ddd;
+			margin-top: -1px;
+			/* Prevent double borders */
+			background-color: #f6f6f6;
+			padding: 4px;
+			text-decoration: none;
+			font-size: 14px;
+			color: black;
+			display: block
+		}
+
+		#expensesList li a:hover:not(.header) {
+			background-color: #eee;
+		}
+	</style>
 </head>
 <div>
 	<div style="float:left">
@@ -41,18 +63,6 @@
 	</div>
 </div>
 <hr>
-
-<div id="divForClicks" style="background-color:green; display:none">
-  DIV
-  <p style="background-color:yellow;">
-     <br>
-    <span style="background-color:aqua;">SPAN</span>
-    <br>
-    PARAGRAPH
-    <br>    
-  </p>
-  <span style="background-color:aqua;">SPAN</span>
-</div>
 
 <div id="divForSearchBox" style="visibility:hidden">
 	<input type="text" id="searchBox"  placeholder="Search for companies.." title="Type in a company name">
@@ -67,5 +77,17 @@
 		<li style="display:none"><a href="#">Care Centers of Humble</a></li>
 		<li style="display:none"><a href="#">Christ Church Center</a></li>
 		<li style="display:none"><a href="#">Cake Masters</a></li>
+	</ul>
+</div>
+
+<div id="divForConcatMap" style="visibility:hidden">
+	<ul id="expensesList">
+		<li><a href="#"><button id="1000" class="deleteBtn">Delete</button> ACME Building, Inc.</a></li>
+		<li><a href="#"><button id="1001" class="deleteBtn">Delete</button> ABC Pest Control</a></li>
+		<li><a href="#"><button id="1002" class="deleteBtn">Delete</button> Bill's Bar & Grill</a></li>
+		<li><a href="#"><button id="1003" class="deleteBtn">Delete</button> Bently Dealerships of Houston, LLC.</a></li>
+		<li><a href="#"><button id="1004" class="deleteBtn">Delete</button> Care Centers of Humble</a></li>
+		<li><a href="#"><button id="1005" class="deleteBtn">Delete</button> Christ Church Center</a></li>
+		<li><a href="#"><button id="1006" class="deleteBtn">Delete</button> Cake Masters</a></li>
 	</ul>
 </div>
