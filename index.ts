@@ -110,15 +110,21 @@ console.clear();
 const deleteButtons = document.getElementsByClassName('deleteBtn');
 
 const source = fromEvent(deleteButtons, 'click').pipe(
-  concatMap(e => fakeDeleteHttpRequest(e) ));
+  concatMap(e => fakeDeleteHttpRequest(e) )  
+  //switchMap(e => fakeDeleteHttpRequest(e) )  // demonstrate how switchMap will not wait.
+);
 
-source.subscribe();
+source.subscribe(button => {
+  console.log(`%cAPI Call Complete: ${button.nextElementSibling.textContent}`, 'color: green');
+  button.parentElement.parentElement.remove();
+});
 
 function fakeDeleteHttpRequest(e: Event) {
   const button = e.target as HTMLButtonElement;
-  button.id
-
-  return of(e);
+    console.log(`%cAPI Call Requested: ${button.nextElementSibling.textContent}`, 'color: orange');
+  return of(button).pipe(delay( Number(button.id) ));
 }
+
 document.getElementById("divForConcatMap").style.visibility = 'visible';
 
+/***********************************  Error handling ***********************************/
