@@ -1,15 +1,17 @@
-import { Observable, of, from, interval, fromEvent } from "rxjs";
+import { Observable, of, from, interval, fromEvent, throwError } from "rxjs";
 import {
   tap,
   map,
-  switchMap,
-  delay,
-  concatMap,
   filter,
-  catchError,
+  switchMap,
+  concatMap,
+  mergeMap,
+  delay,  
   debounceTime,
   distinctUntilChanged,
-  take
+  take,
+  catchError,
+  retry 
 } from "rxjs/operators";
 import { ajax } from "rxjs/ajax";
 
@@ -129,7 +131,7 @@ getEmployees()
 
 //document.getElementById('divForConcatMap').style.display = 'inline';
 
-/***********************************  Error handling ***********************************/
+/***********************************  catchError ***********************************/
 
 // console.clear();
 
@@ -172,3 +174,24 @@ getEmployees()
 // }
 
 // document.getElementById("divForError").style.display = "inline";
+
+/***********************************  retry ***********************************/
+// console.clear();
+
+// const source$ = interval(500); 
+// const example$ = source$.pipe(
+//   mergeMap(val => {
+//     if(val > 3) {
+//       return throwError('Error!');
+//     }
+//     return of(val);
+//   }),
+//   retry(2)
+// );
+
+// const subscribe = example$.subscribe(
+//   {
+//     next: val => console.log(val),
+//     error: val => console.log(`${val}: Retried 2 times then quite!`)
+//   }
+// );
