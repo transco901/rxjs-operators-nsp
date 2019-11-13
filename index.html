@@ -64,7 +64,7 @@
 </div>
 <hr>
 
-<div id="divForSearchBox" style="visibility:hidden">
+<div id="divForSearchBox" style="display:none">
 	<input type="text" id="searchBox"  placeholder="Search for companies.." title="Type in a company name">
 
 	<ul id="searchResultList">
@@ -80,7 +80,7 @@
 	</ul>
 </div>
 
-<div id="divForConcatMap" style="visibility:hidden">
+<div id="divForConcatMap" style="display:none">
 	<ul id="companyList">
 		<li><a href="#"><button id="3000" class="deleteBtn">Delete</button> <span>ACME Building, Inc.</span></a></li>
 		<li><a href="#"><button id="1500" class="deleteBtn">Delete</button> <span>ABC Pest Control</span></a></li>
@@ -90,4 +90,12 @@
 		<li><a href="#"><button id="300" class="deleteBtn">Delete</button> <span>Christ Church Center</span></a></li>
 		<li><a href="#"><button id="100" class="deleteBtn">Delete</button> <span>Cake Masters</span></a></li>
 	</ul>
+</div>
+
+<div id="divForError" style="display:none">
+  <button id="loadBtn">Load Benefits</button>
+  <div>
+    </br>
+    <span id="errorMsg" style="color:red; visibility:hidden">An error occurred while fetching benefits.</span>
+  </div>
 </div>
