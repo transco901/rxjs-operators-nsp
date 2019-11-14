@@ -62,7 +62,6 @@ function getEmployees() {
 
 getEmployees()
   .pipe(
-    filter( ee => ee.companyId !== 8100),
     map(ee => {
       const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
@@ -110,8 +109,8 @@ getEmployees()
 
 // //A stream of "delete button" clicks
 // const source$ = fromEvent(deleteButtons, 'click').pipe(
-//   //concatMap(e => fakeDeleteHttpRequest(e) )
-//   switchMap(e => fakeDeleteHttpRequest(e) )
+//   concatMap(e => fakeDeleteHttpRequest(e) )
+//   // try switchMap 
 // );
 
 // source$.subscribe(button => {
@@ -129,14 +128,14 @@ getEmployees()
 
 /***********************************  catchError ***********************************/
 
-//console.clear();
+// console.clear();
 
-// A stream of "load button" clicks
+// //A stream of "load button" clicks
 // const button = document.getElementById("loadBtn");
 
 // const source$ = fromEvent(button, "click");
 
-//When we click "load", trigger an http get
+// //When we click "load", trigger an http get
 // source$.pipe(concatMap(() => ajax.get("http://this/will/404"))).subscribe({
 //   error(err) {
 //     console.log(err);
