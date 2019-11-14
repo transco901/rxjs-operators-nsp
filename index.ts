@@ -140,7 +140,7 @@ getEmployees()
 //   error(err) {
 //     console.log(err);
 //   }
-// }).subscribe();
+// });
 
 // source$
 //   .pipe(
