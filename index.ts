@@ -65,7 +65,7 @@ getEmployees()
     map(ee => {
       const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
-      console.log(`Name: ${employee.name}, id: ${employee.perId}, age: ${employee.age}`)
+      console.log(`Company: ${employee.companyId}, Name: ${employee.name}, id: ${employee.perId}, age: ${employee.age}`)
     })
   );
 
