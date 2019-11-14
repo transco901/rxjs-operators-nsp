@@ -140,7 +140,7 @@ getEmployees()
 //   error(err) {
 //     console.log(err);
 //   }
-// });
+// }).subscribe();
 
 // source$
 //   .pipe(
@@ -158,8 +158,8 @@ getEmployees()
 //           })
 //         )
 //       )
-//     )
-//     .subscribe(x => console.log(x));
+//     );
+//     //.subscribe(x => console.log(x));
 
 // let benefits = new Array<Benefit>();
 
