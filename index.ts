@@ -60,26 +60,22 @@ function getEmployees() {
               .pipe(concatMap(ee => of(ee).pipe(delay(500))));
 }
 
-// pipe(): takes as its arguments the functions you want to combine (a.k.a. a recipe), and returns a new function that, when executed, runs the composed functions in sequence
 getEmployees()
   .pipe(
+    filter( ee => ee.companyId !== 8100),
     map(ee => {
       const employee: Employee = transformToEmployee(ee);
       employees.push(employee);
       console.log(`Name: ${employee.name}, id: ${employee.perId}, age: ${employee.age}`)
     })
   );
-  // subscribe() adds an observer which triggers the 'lazy' observable to start pushing values
-  //.subscribe();
 
 /***********************************  switchMap ***********************************/
 
 // console.clear();
 // // switchMap() - type ahead search - only interested in latest input; cancel the rest.
-// // debounceTime() - delay and only the most recent value from each burst of emissions.  wait for the user input to stabilize
-// // distinctUntilChange() - Only emit when the current value is different than the last (avoid duplicate seraches).
 
-// A stream of key presses
+// //A stream of key presses
 // fromEvent(document,'keyup').pipe(
 //   debounceTime(500),
 //   map((e: any) => e.target.value),
@@ -105,17 +101,17 @@ getEmployees()
 //     return new Observable();
 // }
 
-//document.getElementById('divForSearchBox').style.display = 'inline';
+// document.getElementById('divForSearchBox').style.display = 'inline';
 
 /***********************************  concatMap ***********************************/
 // console.clear();
 
 // const deleteButtons = document.getElementsByClassName('deleteBtn');
 
-// A stream of "delete button" clicks
+// //A stream of "delete button" clicks
 // const source$ = fromEvent(deleteButtons, 'click').pipe(
-//   concatMap(e => fakeDeleteHttpRequest(e) )
-//   //switchMap(e => fakeDeleteHttpRequest(e) )  // demonstrate how switchMap will not wait.
+//   //concatMap(e => fakeDeleteHttpRequest(e) )
+//   switchMap(e => fakeDeleteHttpRequest(e) )
 // );
 
 // source$.subscribe(button => {
@@ -129,18 +125,18 @@ getEmployees()
 //   return of(button).pipe(delay( Number(button.id) ));
 // }
 
-//document.getElementById('divForConcatMap').style.display = 'inline';
+// document.getElementById('divForConcatMap').style.display = 'inline';
 
 /***********************************  catchError ***********************************/
 
-// console.clear();
+//console.clear();
 
-// // A stream of "load button" clicks
+// A stream of "load button" clicks
 // const button = document.getElementById("loadBtn");
 
 // const source$ = fromEvent(button, "click");
 
-// When we click "load", trigger an http get
+//When we click "load", trigger an http get
 // source$.pipe(concatMap(() => ajax.get("http://this/will/404"))).subscribe({
 //   error(err) {
 //     console.log(err);
